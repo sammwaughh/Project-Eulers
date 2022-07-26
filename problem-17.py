@@ -46,13 +46,16 @@ def countLetters(n):
     elif n < 100:
         units = n % 10
         tens = n - units
-        print(units, tens)
         if units != 0:
             return numberWordLength[tens] + numberWordLength[units]
         else:
             return numberWordLength[tens]
+    elif n < 1000:
+        hundreds = n // 100
+        return numberWordLength[hundreds] + numberWordLength[100] + numberWordLength["and"] + countLetters(n - (100*hundreds))
+
         
 
-print(countLetters(40))
+print(countLetters(342))
 
 print("...End")
