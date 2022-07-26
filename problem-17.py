@@ -41,7 +41,7 @@ for key in numberWords:
     numberWordLength[key] = len(numberWords[key])
 
 def countLetters(n):
-    if n < 10:
+    if n < 20:
         return numberWordLength[n]
     elif n < 100:
         units = n % 10
@@ -58,7 +58,7 @@ def countLetters(n):
         else:
             return numberWordLength[hundreds] + numberWordLength[100] + numberWordLength["and"] + countLetters(n - (100*hundreds))
     else:
-        return numberWordLength[1000]
+        return numberWordLength[1] + numberWordLength[1000]
         
 sum = 0
 for i in range(1, 1001):
