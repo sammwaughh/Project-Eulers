@@ -25,7 +25,7 @@ numberWords = {
     19: "nineteen",
     20: "twenty",
     30: "thirty",
-    40: "fourty",
+    40: "forty",
     50: "fifty",
     60: "sixty",
     70: "seventy",
@@ -40,6 +40,19 @@ numberWordLength = {"and": 3}
 for key in numberWords:
     numberWordLength[key] = len(numberWords[key])
 
-print(numberWordLength)
+def countLetters(n):
+    if n < 10:
+        return numberWordLength[n]
+    elif n < 100:
+        units = n % 10
+        tens = n - units
+        print(units, tens)
+        if units != 0:
+            return numberWordLength[tens] + numberWordLength[units]
+        else:
+            return numberWordLength[tens]
+        
+
+print(countLetters(40))
 
 print("...End")
