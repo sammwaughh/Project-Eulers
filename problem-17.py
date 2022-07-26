@@ -52,10 +52,17 @@ def countLetters(n):
             return numberWordLength[tens]
     elif n < 1000:
         hundreds = n // 100
-        return numberWordLength[hundreds] + numberWordLength[100] + numberWordLength["and"] + countLetters(n - (100*hundreds))
-
+        remainder = n - (100*hundreds)
+        if remainder == 0:
+            return numberWordLength[hundreds] + numberWordLength[100]
+        else:
+            return numberWordLength[hundreds] + numberWordLength[100] + numberWordLength["and"] + countLetters(n - (100*hundreds))
+    else:
+        return numberWordLength[1000]
         
-
-print(countLetters(342))
+sum = 0
+for i in range(1, 1001):
+    sum += countLetters(i)
+print(sum)
 
 print("...End")
