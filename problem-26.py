@@ -1,9 +1,5 @@
 # Problem 26
 
-from math import remainder
-from socket import NI_NUMERICHOST
-
-
 print("Running...")
 
 def lengthOfRepeat(n):
