@@ -9,7 +9,6 @@ f = f[1:-1]
 nameList = f.split("\",\"")
 alphaNameList = sorted(nameList)
 
-
 def nameScore(name):
     score = 0
     for c in name:
