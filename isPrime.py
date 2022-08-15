@@ -12,5 +12,3 @@ def isPrime(n):
             return False
     return True
 
-print(isPrime(47000001))
-
