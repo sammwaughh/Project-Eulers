@@ -1,5 +1,8 @@
 # Problem 31
 
+from audioop import add
+
+
 print("Running...")
 
 def isSameSet(A, B):
@@ -18,10 +21,8 @@ def distinctSet(S):
             newS.append(sortedEle)
     return newS
 
-#print(distinctSet([[1, 1, 1, 1], [1, 1, 2], [1, 2, 1], [2, 1, 1], [2, 2]]))
-
 def addingCombos(target, set):
-    print(target)
+    #print(target)
     combos = []
     for ele in set:
         if ele == target:
@@ -29,14 +30,21 @@ def addingCombos(target, set):
         elif ele < target:
             for ele2 in addingCombos(target - ele, set):
                 combos.append([ele] + ele2)
-    return distinctSet(combos)
+    return combos
 
+#print(len(addingCombos(10, [1,2,5,10])))
+a = distinctSet(addingCombos(200, [200,100,50,20,10]))
+count = 0
+for ele in a:
+    if 10 in ele:
+        count += 1
+print(count)
+
+"""coinPerms = []
 def addCoins(a, b, c, d):
     return a + 2*b + 5*c + 10*d
 
-coinPerms = []
-
-"""for a in range(11):
+for a in range(11):
     for b in range(6):
         for c in range(3):
             for d in range(2):
