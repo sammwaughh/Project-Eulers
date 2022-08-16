@@ -16,9 +16,32 @@ def isPrime(n):
     return True
 
 primes = [2,3]
-for i in range(4, 1000000):
+for i in range(4, 10000000):
     if isPrime(i):
         primes.append(i)
-print(primes)
+
+def isPandigital(n):
+    s = str(n)
+    l = len(s)
+    digs = []
+    for i in range(1,l+1):
+        digs.append(i)
+    for c in s:
+        intc = int(c)
+        if intc not in digs:
+            return False
+        else:
+            digs.remove(intc)
+    return True
+
+largestPanPrime = 2143
+for p in primes:
+    if isPandigital(p):
+        largestPanPrime = p
+
+# Trial and Error on Project Euler
+# Up to 10,000,000 was enough
+# Takes a min
+print(largestPanPrime)
 
 print("...End")
