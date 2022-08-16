@@ -8,6 +8,7 @@ words.close()
 
 ts = [1]
 i = 2
+# Word value will never exceed 300
 while ts[-1] < 300:
     ts.append(ts[-1]+i)
     i += 1
