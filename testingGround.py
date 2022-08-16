@@ -1,2 +1,1 @@
-print(15/5)
-print(15//5)
+print(len(554))
