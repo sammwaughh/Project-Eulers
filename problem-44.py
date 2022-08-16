@@ -1,8 +1,5 @@
 # Problem 44
 
-from cgitb import small
-
-
 print("Running...")
 
 def genPentagonals(n):
