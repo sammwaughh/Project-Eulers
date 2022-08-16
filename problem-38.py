@@ -21,6 +21,22 @@ def isPandigital(n):
             digs.remove(intc)
     return True
 
+panMults = []
+i = 1
+# i cannot exceed 10,000 because 
+# a number longer than nine digits will be made for n >= 2
+while i < 10000:
+    n = 2
+    stop = False
+    while not stop:
+        res = makeNum(i, n)
+        if len(str(res)) > 9:
+            stop = True
+        elif isPandigital(res):
+            panMults.append(res)
+        n += 1
+    i += 1
 
+print(max(panMults))
 
 print("...End")
