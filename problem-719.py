@@ -13,8 +13,12 @@ def makeBins(n):
         bins.append(str(bin(i))[2:].zfill(n))
     return bins
 
+bins = [0]
+for i in range(1, 13):
+    bins.append(makeBins(i))
+
 squares = []
-for i in range(4, 101):
+for i in range(4, 1000001):
     squares.append(i**2)
 
 def parseSum(s):
@@ -31,11 +35,10 @@ def splitSum(square, root):
         arr.append(c)
     # arr = ['6', '7', '2', '4']
     l0 = len(arr) - 1
-    combos = makeBins(l0)
+    combos = bins[l0]
     i = 0
-    l = len(combos)
-    found = False
-    while i < l and not found:
+    l = 2**l0
+    while i < l:
         combo = combos[i]
         expression = arr[0]
         for j in range(l0):
@@ -47,14 +50,17 @@ def splitSum(square, root):
         i += 1
     return False
 
-
 snumbers = []
+i = 0
 for square in squares:
+    if i % 100 == 0:
+        print(i)
     root = math.sqrt(square)
     if splitSum(square, root):
         snumbers.append(square)
+    i += 1
 
-print(snumbers)
+#print(snumbers)
 print(sum(snumbers))
 
 print("...End")
