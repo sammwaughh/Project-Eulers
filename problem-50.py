@@ -45,7 +45,7 @@ for i in range(len(primes)):
         s = sum(arr)
         l = len(arr)
 
-#Takes a minute
+#Takes a minute or two
 
 print(bestL, bestP)
 
