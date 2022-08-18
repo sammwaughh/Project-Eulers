@@ -19,7 +19,7 @@ def isPrime(n, knownPrimes):
 
 primes = [2,3]
 
-for i in range(5, 100000, 2):
+for i in range(5, 200000, 2):
     if isPrime(i, primes):
         primes.append(i)
 
@@ -39,7 +39,17 @@ def findDistinctPrimeFactors(n):
         pf = primes[i]
     return primeFactors
 
-i = 646
-print(i, findDistinctPrimeFactors(i))
+distincts = []
+found = False
+i = 2
+while not found:
+    distincts.append(len(findDistinctPrimeFactors(i)))
+    if sum(distincts[-4:]) == 16:
+        print(i-3)
+        print("FOUND")
+        found = True
+    i += 1
+
+# Takes a minute
 
 print("...End")
