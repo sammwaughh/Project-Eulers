@@ -1,1 +1,2 @@
-print(int("5+4"))
+newPower = '01234567890'
+print(int(str(newPower)[-10:]))
