@@ -26,7 +26,7 @@ for i in range(5, 200000, 2):
 ### Efficient Prime list generator
 ### Don't edit
 
-# primes is all primes under 100,000
+# primes is all primes under 200,000
 
 def findDistinctPrimeFactors(n):
     primeFactors = []
