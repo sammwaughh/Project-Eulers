@@ -10,11 +10,11 @@ def makeBins(n):
     bins = []
     bound = 2**n
     for i in range(bound):
-        bins.append(str(bin(i))[2:].zfill(3))
+        bins.append(str(bin(i))[2:].zfill(n))
     return bins
 
 squares = []
-for i in range(100):
+for i in range(4, 101):
     squares.append(i**2)
 
 def parseSum(s):
@@ -53,6 +53,7 @@ for square in squares:
     root = math.sqrt(square)
     if splitSum(square, root):
         snumbers.append(square)
+
 print(snumbers)
 print(sum(snumbers))
 
