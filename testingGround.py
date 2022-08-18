@@ -1,1 +1,1 @@
-print(len(554))
+print(int("5+4"))
