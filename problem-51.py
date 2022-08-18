@@ -1,6 +1,4 @@
-# Problem 50
-
-import math
+# Problem 51
 
 print("Running...")
 
