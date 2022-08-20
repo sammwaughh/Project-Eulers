@@ -1,5 +1,6 @@
 # Problem 54
 
+from asyncio import coroutine
 from re import L
 
 
@@ -147,9 +148,6 @@ def compareHands(hand):
     hand2Eval = evalHand(hand2)
     handScore1 = handDict[hand1Eval[0]]
     handScore2 = handDict[hand2Eval[0]]
-    print(hand1, hand2)
-    print(evalHand(hand1), evalHand(hand2))
-    print(handScore1, handScore2)
     if handScore1 > handScore2:
         return 1
     elif handScore1 < handScore2:
@@ -174,10 +172,80 @@ def compareHands(hand):
             elif player2[0] > player1[0]:
                 return 2
             else:
-                
+                i = 3
+                while True:
+                    p1 = player1[i]
+                    p2 = player2[i]
+                    if p1 > p2:
+                        return 1
+                    elif p2 > p1:
+                        return 1
+                    else:
+                        i -= 1
+        elif handScore1 == 2:
+            if player1[1] > player2[1]:
+                return 1
+            elif player2[1] > player1[1]:
+                return 2
+            else:
+                if player1[0] > player2[0]:
+                    return 1
+                elif player2[0] > player1[0]:
+                    return 2
+                else:
+                    if player1[2] > player2[2]:
+                        return 1
+                    else:
+                        return 2
+        elif handScore1 == 3:
+            if player1[0] > player2[0]:
+                return 1
+            elif player2[0] > player1[0]:
+                return 2
+            else:
+                if player1[2] > player2[2]:
+                    return 1
+                elif player2[2] > player1[2]:
+                    return 2
+                else:
+                    if player1[1] > player2[1]:
+                        return 1
+                    else:
+                        return 2
+        elif handScore1 == 4 or handScore1 == 8:
+            top1 = player1.sort()[-1]
+            top2 = player2.sort()[-1]
+            if top1 > top2:
+                return 1
+            else:
+                return 2
+        elif handScore1 == 5:
+            player1.sort()
+            player2.sort()
+            i = 4
+            while True:
+                if player1[i] > player2[i]:
+                    return 1
+                elif player2[i] > player1[i]:
+                    return 2
+                else:
+                    i -= 1
+        elif handScore1 == 6 or handScore1 == 7:
+            if player1[0] > player2[0]:
+                return 1
+            elif player2[0] > player1[0]:
+                return 2
+            else:
+                if player1[1] > player2[1]:
+                    return 1
+                else:
+                    return 2
+        
 
-
-
-compareHands(hands[1])
+count = 0
+for hand in hands:
+    if compareHands(hand) == 1:
+        count += 1
+print(count)
 
 print("...End")
