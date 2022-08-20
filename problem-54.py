@@ -32,7 +32,26 @@ def isStraightFunc(nums):
     numsLowA.sort()
     numsHighA.sort()
     num0 = numsLowA[0]
-    
+    isStraightLow = True
+    i = 1
+    while isStraightLow and i < 5:
+        if numsLowA[i] != num0+i:
+            isStraightLow = False
+        i += 1
+    if isStraightLow:
+        return True
+    else:
+        num0 = numsHighA[0]
+        isStraightHigh = True
+        i = 1
+        while isStraightHigh and i < 5:
+            if numsHighA[i] != num0+i:
+                isStraightHigh = False
+            i += 1
+        if isStraightHigh:
+            return True
+        else:
+            return False
 
 def evalHand(hand):
     nums = []
@@ -47,11 +66,8 @@ def evalHand(hand):
     print(isStraight)
 
     
-    
-
-
 # ['7D', '2S', '5D', '3S', 'AC']
-evalHand(['7D', '2D', '5D', '3S', 'AD'])
+evalHand(['4D', '2D', '5D', '3S', 'AD'])
 
 def compareHands(hand):
     hand1 = hand[:5]
