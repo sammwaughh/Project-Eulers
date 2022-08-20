@@ -59,15 +59,54 @@ def evalHand(hand):
     for card in hand:
         nums.append(card[0])
         suits.append(card[1])
-    print(nums)
-    print(suits)
     isFlush = isSameSuit(suits)
     isStraight = isStraightFunc(nums)
-    print(isStraight)
+    if isStraight:
+        if isFlush:
+            return ('straight flush', nums)
+        else:
+            return ('straight', nums)
+    elif isFlush:
+        return ('flush', nums)
+    else:
+        countArr = [0]*14
+        for n in nums:
+            if n == 'A':
+                n = '13'
+            countArr[int(n)] += 1
+        if 4 in countArr:
+            return ('four of a kind', (countArr.index(4), countArr.index(1)))
+        if 3 in countArr and 2 in countArr:
+            return ('full house', (countArr.index(3), countArr.index(2)))
+        if 3 in countArr:
+            k = countArr.index(1)
+            l = countArr.index(1, k+1, 14)
+            return ('three of a kind', (countArr.index(3), k, l))
+        if 2 in countArr:
+            i = countArr.index(2)
+            countArr[i] = 0
+            if 2 in countArr:
+                j = countArr.index(2)
+                k = countArr.index(1)
+                return ('two pair', (i, j, k))
+            else:
+                j = countArr.index(1)
+                k = countArr.index(1, j+1, 14)
+                l = countArr.index(1, k+1, 14)
+                return ('pair', (i, j, k, l))
+        else:
+            a = countArr.index(1)
+            b = countArr.index(1, a+1, 14)
+            c = countArr.index(1, b+1, 14)
+            d = countArr.index(1, c+1, 14)
+            e = countArr.index(1, d+1, 14)
+            return ('high card', (a,b,c,d,e))
+
+                   
 
     
 # ['7D', '2S', '5D', '3S', 'AC']
-evalHand(['4D', '2D', '5D', '3S', 'AD'])
+print(evalHand(['AC', '8D', '8S', 'AS', 'AH']))
 
 def compareHands(hand):
     hand1 = hand[:5]
