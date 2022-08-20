@@ -1,5 +1,8 @@
 # Problem 54
 
+from re import L
+
+
 print("Running...")
 
 file54 = open("54.txt", "r")
@@ -152,7 +155,28 @@ def compareHands(hand):
     elif handScore1 < handScore2:
         return 2
     else:
-        
+        player1 = hand1Eval[1]
+        player2 = hand2Eval[1]
+        if handScore1 == 0:
+            i = 4
+            while True:
+                p1 = player1[i]
+                p2 = player2[i]
+                if p1 > p2:
+                    return 1
+                elif p2 > p1:
+                    return 1
+                else:
+                    i -= 1
+        elif handScore1 == 1:
+            if player1[0] > player2[0]:
+                return 1
+            elif player2[0] > player1[0]:
+                return 2
+            else:
+                
+
+
 
 compareHands(hands[1])
 
