@@ -25,6 +25,18 @@ def isStraightFunc(nums):
     for num in nums:
         if num == 'A':
             numsLowA.append(1)
+            numsHighA.append(14)
+        elif num == 'T':
+            numsLowA.append(10)
+            numsHighA.append(10)
+        elif num == 'J':
+            numsLowA.append(11)
+            numsHighA.append(11)
+        elif num == 'Q':
+            numsLowA.append(12)
+            numsHighA.append(12)
+        elif num == 'K':
+            numsLowA.append(13)
             numsHighA.append(13)
         else:
             numsLowA.append(int(num))
@@ -69,10 +81,18 @@ def evalHand(hand):
     elif isFlush:
         return ('flush', nums)
     else:
-        countArr = [0]*14
+        countArr = [0]*15
         for n in nums:
             if n == 'A':
+                n = '14'
+            if n == 'K':
                 n = '13'
+            if n == 'Q':
+                n = '12'
+            if n == 'J':
+                n = '11'
+            if n == 'T':
+                n = '10'
             countArr[int(n)] += 1
         if 4 in countArr:
             return ('four of a kind', (countArr.index(4), countArr.index(1)))
@@ -80,7 +100,7 @@ def evalHand(hand):
             return ('full house', (countArr.index(3), countArr.index(2)))
         if 3 in countArr:
             k = countArr.index(1)
-            l = countArr.index(1, k+1, 14)
+            l = countArr.index(1, k+1, 15)
             return ('three of a kind', (countArr.index(3), k, l))
         if 2 in countArr:
             i = countArr.index(2)
@@ -91,22 +111,19 @@ def evalHand(hand):
                 return ('two pair', (i, j, k))
             else:
                 j = countArr.index(1)
-                k = countArr.index(1, j+1, 14)
-                l = countArr.index(1, k+1, 14)
+                k = countArr.index(1, j+1, 15)
+                l = countArr.index(1, k+1, 15)
                 return ('pair', (i, j, k, l))
         else:
             a = countArr.index(1)
-            b = countArr.index(1, a+1, 14)
-            c = countArr.index(1, b+1, 14)
-            d = countArr.index(1, c+1, 14)
-            e = countArr.index(1, d+1, 14)
+            b = countArr.index(1, a+1, 15)
+            c = countArr.index(1, b+1, 15)
+            d = countArr.index(1, c+1, 15)
+            e = countArr.index(1, d+1, 15)
             return ('high card', (a,b,c,d,e))
-
-                   
-
     
 # ['7D', '2S', '5D', '3S', 'AC']
-print(evalHand(['AC', '8D', '8S', 'AS', 'AH']))
+print(evalHand(['2C', 'KD', '2S', 'KS', 'KH']))
 
 def compareHands(hand):
     hand1 = hand[:5]
