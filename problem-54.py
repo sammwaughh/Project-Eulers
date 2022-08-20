@@ -125,9 +125,6 @@ def evalHand(hand):
             d = countArr.index(1, c+1, 15)
             e = countArr.index(1, d+1, 15)
             return ('high card', (a,b,c,d,e))
-    
-# ['7D', '2S', '5D', '3S', 'AC']
-#print(evalHand(['2C', 'KD', '2S', 'KS', 'KH']))
 
 handDict = {
     'high card': 0,
@@ -163,7 +160,7 @@ def compareHands(hand):
                 if p1 > p2:
                     return 1
                 elif p2 > p1:
-                    return 1
+                    return 2
                 else:
                     i -= 1
         elif handScore1 == 1:
@@ -179,7 +176,7 @@ def compareHands(hand):
                     if p1 > p2:
                         return 1
                     elif p2 > p1:
-                        return 1
+                        return 2
                     else:
                         i -= 1
         elif handScore1 == 2:
@@ -241,10 +238,9 @@ def compareHands(hand):
                 else:
                     return 2
         
-
 count = 0
-for hand in hands:
-    if compareHands(hand) == 1:
+for i in range(len(hands)):
+    if compareHands(hands[i]) == 1:
         count += 1
 print(count)
 
