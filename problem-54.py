@@ -123,12 +123,37 @@ def evalHand(hand):
             return ('high card', (a,b,c,d,e))
     
 # ['7D', '2S', '5D', '3S', 'AC']
-print(evalHand(['2C', 'KD', '2S', 'KS', 'KH']))
+#print(evalHand(['2C', 'KD', '2S', 'KS', 'KH']))
+
+handDict = {
+    'high card': 0,
+    'pair': 1,
+    'two pair': 2,
+    'three of a kind': 3,
+    'straight': 4,
+    'flush': 5,
+    'full house': 6,
+    'four of a kind': 7,
+    'straight flush': 8
+}
 
 def compareHands(hand):
     hand1 = hand[:5]
     hand2 = hand[5:]
+    hand1Eval = evalHand(hand1)
+    hand2Eval = evalHand(hand2)
+    handScore1 = handDict[hand1Eval[0]]
+    handScore2 = handDict[hand2Eval[0]]
     print(hand1, hand2)
+    print(evalHand(hand1), evalHand(hand2))
+    print(handScore1, handScore2)
+    if handScore1 > handScore2:
+        return 1
+    elif handScore1 < handScore2:
+        return 2
+    else:
+        
 
+compareHands(hands[1])
 
 print("...End")
