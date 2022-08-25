@@ -3,8 +3,6 @@
 #include <stdbool.h>
 
 int main(){
-    int factors[100];
-    int index = 0;
     int maxFactor = 1;
     long num = 600851475143;
 
@@ -14,8 +12,6 @@ int main(){
         while (!found) {
             if (num % f == 0) {
                 num = num / f;
-                factors[index] = f;
-                index += 1;
                 found = true;
                 if (f > maxFactor) {
                     maxFactor = f;
