@@ -2,29 +2,14 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool isPalindrome(char *string){
-    int l = strlen(string);
-    bool isPal = true;
-    for (int i = 0; i < l; i++) {
-        isPal = isPal && (string[i] == string[l-i-1]);
-    }
-    return isPal;
-}
-
 int main(){
-    int largestPal = 1;
-    for (int i = 100; i < 1000; i++) {
-        for (int j = 100; j < 1000; j++) {
-            int k = i*j;
-            if (k > largestPal) {
-                char *strk;
-                sprintf(strk, "%d", k);
-                if (isPalindrome(strk)) {
-                    largestPal = k;            
-                }
-            }
-        }
+    int squareSum = 0;
+    int sum = 0;
+    for (int i = 1; i < 101; i++) {
+        sum += i;
+        squareSum += i*i;
     }
-    printf("%d\n", largestPal);
+    int ans = sum*sum - squareSum;
+    printf("%d\n", ans);
     return 0;
 }
