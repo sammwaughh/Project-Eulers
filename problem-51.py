@@ -152,11 +152,10 @@ for sub_list in mega_list:
     for ele in sub_list:
         flat_list.append(ele)
 
-print(len(flat_list))
-strNums_7 = []
 
 digits = [0,1,2,3,4,5,6,7,8,9]
 
+str_8 = []
 for strNum in flat_list:
     c = 0
     l = []
@@ -166,8 +165,23 @@ for strNum in flat_list:
             c += 1
             l.append(number)
     if c == 8:
-        print(strNum)
-        print(l)
+        str_8.append(l)
+
+good_8 = []
+for arr in str_8:
+    good = True
+    for i in range(len(arr)-1):
+        if len(str(arr[i])) != len(str(arr[i+1])):
+            good = False
+    if good:
+        good_8.append(arr)
+
+flat_8 = []
+for sub_list in good_8:
+    for ele in sub_list:
+        flat_8.append(ele)
+
+print(min(flat_8))
 
 print("...End")
 
