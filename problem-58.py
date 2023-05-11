@@ -26,62 +26,6 @@ prime_nums = [i for i in range(len(prime_bools)) if prime_bools[i]]
 
 print("Done calculating primes")
 
-"""
-def grow_square(square):
-    size = len(square)
-    digit = square[-1][-1] + 1
-    for i in range(size-1, -1, -1):
-        square[i].append(digit)
-        digit += 1
-    top = [i for i in range(digit+size+1, digit-1, -1)]
-    digit += size + 2
-    for i in range(size):
-        square[i] = [digit] + square[i]
-        digit += 1
-    bottom = [i for i in range(digit, digit+size+2)]
-    new_square = [top]
-    for row in square:
-        new_square.append(row)
-    new_square.append(bottom)
-    return new_square
-
-def grow_square_n_times(square, n):
-    for i in range(n):
-        square = grow_square(square)
-    return square
-
-def print_square(square):
-    for row in square:
-        print(row)
-
-def return_diagonals(square):
-    size = len(square)
-    diagonals = []
-    for i in range(size):
-        diagonals.append(square[i][i])
-        if i != size-i-1:
-            diagonals.append(square[i][size-i-1])
-    return diagonals
-
-side_length = 1
-stop = False
-my_square = [[1]]
-
-while not stop:
-    if side_length % 1001 == 0:
-        print(side_length)
-    my_square = grow_square(my_square)
-    side_length += 2
-    diagonals = return_diagonals(my_square)
-    l = side_length*2 - 1
-    p = 0
-    for ele in diagonals:
-        if prime_bools[ele]:
-            p += 1
-    if p / l < 0.1:
-        stop = True
-print(side_length)"""
-
 def calc_north_east(n):
     return 4*n*n - 10*n + 7
 
