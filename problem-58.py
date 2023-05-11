@@ -91,7 +91,7 @@ def calc_north_west(n):
 def calc_south_west(n):
     return 4*n*n - 6*n + 3
 
-side_length = 3
+side_length = 1
 stop = False
 p = 0
 while not stop:
@@ -106,10 +106,9 @@ while not stop:
 
     l = side_length*2 - 1
     ratio = p / l
-    print("Side length:{}\tRatio:{}".format(side_length, ratio))
-
     if ratio < 0.1:
         stop = True
-        print(side_length)
+        
+print(side_length)
     
 print("...End")
