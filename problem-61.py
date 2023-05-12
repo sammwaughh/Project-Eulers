@@ -69,21 +69,6 @@ hexagonals = hexagonals_under_m(10000)
 heptagonals = heptagonals_under_m(10000)
 octagonals = octagonals_under_m(10000)
 
-def list_in_range(arr):
-    # Starting list
-    new_arr = []
-    for i in range(1000,10000):
-        if arr[i]:
-            new_arr.append(i)
-    return new_arr
-
-triangles = list_in_range(triangles)
-squares = list_in_range(squares)
-pentagonals = list_in_range(pentagonals)
-hexagonals = list_in_range(hexagonals)
-heptagonals = list_in_range(heptagonals)
-octagonals = list_in_range(octagonals)
-
 def triangles_begin_with_x(x):
     # e.g. x = 81 so number could be 8100 or 8128
     i = 100 * x
@@ -152,91 +137,92 @@ def octagonals_begin_with_x(x):
 
 # Main program
 
-def next_polygons(x, polygons_found, arr):
+def next_polygons(startx, polygons_found, arr, record):
     c = 0
     for i in range(6):
         if polygons_found[i]:
             c += 1
-    if c == 6:
-        print(arr)
-        return True
-
-    # Cycle begins
-    startx = int(str(x)[-2:])
+    if c == 6 and len(arr) == 6:
+        end = arr[-1]
+        start = arr[0]
+        if str(end)[-2:] == str(start)[:2]:
+            print(arr)
+            print(record)
 
     if not polygons_found[0]:
         p3 = triangles_begin_with_x(startx)
-        polygons_found[0] = True
         if p3:
             for p in p3:
                 startp = int(str(p)[-2:])
                 if startp >= 10:
+                    polygons_found[0] = True
                     new_arr = arr + [p]
-                    return next_polygons(startp, polygons_found, new_arr)
-        else:
-            return False
+                    new_record = record + ["tri"]
+                    next_polygons(startp, polygons_found, new_arr, new_record)
     
     if not polygons_found[1]:
         p4 = squares_begin_with_x(startx)
-        polygons_found[1] = True
         if p4:
             for p in p4:
                 startp = int(str(p)[-2:])
                 if startp >= 10:
+                    polygons_found[1] = True
                     new_arr = arr + [p]
-                    return next_polygons(startp, polygons_found, new_arr)
-        else:
-            return False
+                    new_record = record + ["square"]
+                    next_polygons(startp, polygons_found, new_arr, new_record)
 
     if not polygons_found[2]:
         p5 = pentagonals_begin_with_x(startx)
-        polygons_found[2] = True
         if p5:
             for p in p5:
                 startp = int(str(p)[-2:])
                 if startp >= 10:
+                    polygons_found[2] = True
                     new_arr = arr + [p]
-                    return next_polygons(startp, polygons_found, new_arr)
-        else:
-            return False
+                    new_record = record + ["pent"]
+                    next_polygons(startp, polygons_found, new_arr, new_record)
 
     if not polygons_found[3]:
         p6 = hexagonals_begin_with_x(startx)
-        polygons_found[3] = True
         if p6:
             for p in p6:
                 startp = int(str(p)[-2:])
                 if startp >= 10:
+                    polygons_found[3] = True
                     new_arr = arr + [p]
-                    return next_polygons(startp, polygons_found, new_arr)
-        else:
-            return False
+                    new_record = record + ["hex"]
+                    next_polygons(startp, polygons_found, new_arr, new_record)
 
     if not polygons_found[4]:
         p7 = heptagonals_begin_with_x(startx)
-        polygons_found[4] = True
         if p7:
             for p in p7:
                 startp = int(str(p)[-2:])
                 if startp >= 10:
+                    polygons_found[4] = True
                     new_arr = arr + [p]
-                    return next_polygons(startp, polygons_found, new_arr)
-        else:
-            return False
+                    new_record = record + ["hept"]
+                    next_polygons(startp, polygons_found, new_arr, new_record)
     
+octagonal_nums = []
+for i in range(1000, 10000):
+    if octagonals[i]:
+        octagonal_nums.append(i)
 
 # Start number
 i = 0
-l = len(octagonals)
+l = len(octagonal_nums)
 while i < l:
-    y = octagonals[i]
+    y = octagonal_nums[i]
     arr = [y]
+    starty = int(str(y)[-2:])
     polygons_found = [False, False, False, False, False, True]
     print(i)
-
-    good = next_polygons(y, polygons_found, arr)
-    if good:
-        break
+    if starty >= 10:
+        start_record = ["oct"]
+        good = next_polygons(starty, polygons_found, arr, start_record)
+        if good:
+            break
     i += 1
 
 
