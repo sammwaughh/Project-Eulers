@@ -1,4 +1,4 @@
-# Problem 58
+# Problem 60
 
 print("Running...")
 
@@ -66,6 +66,6 @@ for quad in good_quads:
                 good_quints.append([quad[0], quad[1], quad[2], quad[3], x])
 
 print(good_quints)
-print(sum(good_quints))
+print(sum(good_quints[0]))
 
 print("...End")
