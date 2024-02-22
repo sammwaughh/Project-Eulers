@@ -38,9 +38,25 @@ def euler_totient(n):
         result -= result // n
     return result
 
-limit = 1000000
+def isPermutation(a, b):
+    
+
+
+limit = 10000
 knownPrimes = generatePrimeUpTo(limit+100)
 
+totient_list = []
+min_ratio = 2
+n = None
+for i in range(1, limit):
+    euler = euler_totient(i)
+    if isPermutation(i, euler):
+        ratio = i / euler
+        if ratio < min_ratio:
+            min_ratio = ratio
+            n = i
+
+print(n)
 
 end_time = time.time()
 execution_time = end_time - start_time
