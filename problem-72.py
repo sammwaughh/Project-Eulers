@@ -54,15 +54,32 @@ def primeFactors(n):
         prime = knownPrimes[index]
     return factors
 
-limit = 75000
+def newPrimeFactors(n):
+    index = 0
+    prime = knownPrimes[index]
+    Found = False
+    while not Found:
+        if n % prime == 0:
+            Found = True
+        else:
+            index += 1
+            prime = knownPrimes[index]
+    bigFactor = n // prime
+    factors = biglist[bigFactor]
+    if factors == None:
+        return [prime]
+    if prime not in factors:
+        return [prime] + factors
+    else:
+        return factors
+
+
+limit = 100000
 knownPrimes = generatePrimeUpTo(limit+100)
 
 biglist = [None, None]
 for i in range(2, limit):
-    biglist.append(primeFactors(i))
-
-
-print(biglist[-1])
+    biglist.append(newPrimeFactors(i))
 
 
 # total = 0
