@@ -3,24 +3,6 @@
 import time
 start_time = time.time()
 
-def coPrimeLessThan(n, prime_factors):
-    seive = [None]
-    for i in range(1, n):
-        seive.append(i)
-    for p in prime_factors:
-        index = p
-        while index < n:
-            seive[index] = None
-            index += p
-    coprimes = []
-    for ele in seive:
-        if ele != None:
-            coprimes.append(ele)
-    return coprimes
-
-def otherCoPrimeFunction(n, prime_factors):
-    pass
-
 def generatePrimeUpTo(n):
     seive = [None, None, ]
     for i in range(2, n):
@@ -41,53 +23,27 @@ def generatePrimeUpTo(n):
             primes.append(ele)
     return primes
 
-def primeFactors(n):
-    factors = []
+def euler_totient(n):
+    result = n  # Initialize result as n
     index = 0
-    prime = knownPrimes[index]
-    while n != 1:
-        if n % prime == 0:
-            factors.append(prime)
-            while n % prime == 0:
-                n = n // prime
+    p = knownPrimes[index]
+    while p * p <= n:
+        if n % p == 0:
+            while n % p == 0:
+                n //= p
+            result -= result // p
         index += 1
-        prime = knownPrimes[index]
-    return factors
+        p = knownPrimes[index]
+    if n > 1:
+        result -= result // n
+    return result
 
-def newPrimeFactors(n):
-    index = 0
-    prime = knownPrimes[index]
-    Found = False
-    while not Found:
-        if n % prime == 0:
-            Found = True
-        else:
-            index += 1
-            prime = knownPrimes[index]
-    bigFactor = n // prime
-    factors = biglist[bigFactor]
-    if factors == None:
-        return [prime]
-    if prime not in factors:
-        return [prime] + factors
-    else:
-        return factors
-
-
-limit = 100000
+limit = 1000000
 knownPrimes = generatePrimeUpTo(limit+100)
-
-biglist = [None, None]
-for i in range(2, limit):
-    biglist.append(newPrimeFactors(i))
-
-
-# total = 0
-# for i in range(1, 9):
-#     i_prime_factors = primeFactors(i)
-#     total += len(coPrimeLessThan(i, i_prime_factors))
-# print(total)
-
+total = 0
+for i in range(2, limit+1):
+    total += euler_totient(i)
+print(total)
 
 end_time = time.time()
 execution_time = end_time - start_time
