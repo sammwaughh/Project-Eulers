@@ -39,7 +39,7 @@ def euler_totient(n):
     return result
 
 def isPermutation(a, b):
-    
+    pass
 
 
 limit = 10000
